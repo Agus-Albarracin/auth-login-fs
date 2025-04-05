@@ -29,7 +29,7 @@ Para iniciar el cliente, sigue estos pasos:
 
 2. npm install
 
-3. npm run dev o, si deseas construir el proyecto para producción, ejecuta: npm build npm start
+3. npm run dev o npm run start
 
 ## CI/CD y Contenerización
 
