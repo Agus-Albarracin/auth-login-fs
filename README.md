@@ -30,3 +30,11 @@ Para iniciar el cliente, sigue estos pasos:
 2. npm install
 
 3. npm run dev o, si deseas construir el proyecto para producción, ejecuta: npm build npm start
+
+## CI/CD y Contenerización
+
+1. Asegurate de crear la carpeta build en el frontend
+2. cd client
+3. npm run build / vite build (Si ya tienes hecho el build en el client saltea estos pasos.)
+4. Crea y levanta los servicios en docker:
+5. docker-compose up --build
