@@ -54,9 +54,11 @@ const ProyectosCliente = () => {
     }
   };
 
+  console.log("se muestra proys", proyectos)
+  console.log("es array?", Array.isArray(proyectos)); 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Proyectos del Cliente #{clienteId}</h2>
+      <h2>Proyectos de "{proyectos[0]?.client?.nombre}"</h2>
       <button onClick={() => setModalOpen(true)} style={{ marginBottom: "10px" }}>
         <FaPlus /> Nuevo Proyecto
       </button>
