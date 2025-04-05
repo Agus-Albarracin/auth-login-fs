@@ -5,7 +5,9 @@ import {
   updateCliente,
   deleteCliente,
 } from "../services/clientService";
+import { createProyecto } from "../services/proyectoService"
 import ModalCliente from "../components/ModalCliente";
+import ModalProyecto from "../components/ModalProyecto";
 import { FaEdit, FaTrash, FaPlus, FaFolderOpen } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +15,7 @@ const User = () => {
   const [clientes, setClientes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalProyectoOpen, setModalProyectoOpen] = useState(false);
   const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
   const navigate = useNavigate();
 
@@ -43,6 +46,16 @@ const User = () => {
       cargarClientes();
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handleGuardarProyecto = async (proyecto) => {
+    try {
+      await createProyecto(proyecto);
+      setModalProyectoOpen(false);
+      setClienteSeleccionado(null);
+    } catch (err) {
+      console.error("Error guardando proyecto:", err);
     }
   };
 
@@ -82,7 +95,7 @@ const User = () => {
                 <td>{cliente.correo}</td>
                 <td>{cliente.telefono}</td>
                 <td>
-                  <button onClick={() => navigate(`/proyectos/${cliente.id}`)}>
+                  <button onClick={() => navigate(`/proys/${cliente.id}`)}>
                     <FaFolderOpen />
                   </button>
                   <button onClick={() => {
@@ -90,6 +103,12 @@ const User = () => {
                     setModalOpen(true);
                   }}>
                     <FaEdit />
+                  </button>
+                  <button onClick={() => {
+                    setClienteSeleccionado(cliente);
+                    setModalProyectoOpen(true);
+                  }}>
+                    <FaPlus /> Proyecto
                   </button>
                   <button onClick={() => handleEliminar(cliente.id)}>
                     <FaTrash />
@@ -108,6 +127,16 @@ const User = () => {
           }}
           onSave={handleGuardar}
           cliente={clienteSeleccionado}
+        />
+      )}
+      {modalProyectoOpen && clienteSeleccionado && (
+        <ModalProyecto
+          cliente={clienteSeleccionado}
+          onClose={() => {
+            setModalProyectoOpen(false);
+            setClienteSeleccionado(null);
+          }}
+          onSave={handleGuardarProyecto}
         />
       )}
     </div>
