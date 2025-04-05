@@ -1,4 +1,4 @@
-# Proyecto Frontend
+# Login Auth JWT - Full Stack
 
 Este proyecto es una aplicación frontend que se conecta a una base de datos PostgreSQL. A continuación, se detallan los pasos para iniciar el cliente y configurar la base de datos.
 
