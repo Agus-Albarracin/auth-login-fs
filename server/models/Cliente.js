@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     Cliente.belongsTo(models.Usuario, { foreignKey: 'user_id' });
 
     // Un cliente puede tener varios proyectos asociados
-    Cliente.hasMany(models.Proyecto, { foreignKey: 'cliente_id' });
+    Cliente.hasMany(models.Proyecto, { foreignKey: 'cliente_id', as: 'proyectos', });
   };
 
   return Cliente;

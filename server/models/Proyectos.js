@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Proyecto.associate = (models) => {
     // Cada proyecto pertenece a un cliente
-    Proyecto.belongsTo(models.Cliente, { foreignKey: 'cliente_id' });
+    Proyecto.belongsTo(models.Cliente, { foreignKey: 'cliente_id', as: 'client', });
   };
 
   return Proyecto;
