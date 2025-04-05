@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const db = require('./models');
-require('dotenv').config();
 const userRoutes = require('./routes/usuarios.routes')
 const authRoutes = require('./routes/auth.routes')
+const clientRoutes = require('./routes/clientes.routes')
 
 const app = express();
 app.use(express.json());
@@ -12,8 +13,9 @@ app.use(cors())
 // Rutas públicas:
 app.use('/api/auth', authRoutes);
 
-// Rutas
+// Rutas privadas:
 app.use('/api/usuarios', userRoutes);
+app.use('/api/cliente', clientRoutes)
 
 // Sincronizar base de datos
 db.sequelize.sync()

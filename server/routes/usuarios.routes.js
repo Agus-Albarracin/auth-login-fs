@@ -6,7 +6,7 @@ const {  createUsuario, getUsuarios, getUsuarioById, updateUsuario, deleteUsuari
 //protección de token
 router.use(authenticateToken)
 
-//rutas
+//rutas privadas
 router.post('/', createUsuario);
 router.get('/', getUsuarios);
 router.get('/:id', getUsuarioById);
