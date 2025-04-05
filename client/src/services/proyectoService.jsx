@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4100/api/cliente";
+const API_URL = "http://localhost:4100/api/proys";
 
 /**
  * Todos los servicios deberían obtener el token desde el storage, 

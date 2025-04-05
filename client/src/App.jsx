@@ -9,7 +9,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/usuarios" element={<User />} />
-        <Route path="/proys" element={ <ProyectosCliente />} />
+        <Route path="/proys/:clienteId" element={ <ProyectosCliente />} />
       </Routes>
     </Router>
   );

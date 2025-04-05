@@ -5,6 +5,7 @@ const db = require('./models');
 const userRoutes = require('./routes/usuarios.routes')
 const authRoutes = require('./routes/auth.routes')
 const clientRoutes = require('./routes/clientes.routes')
+const proyectoRoutes = require('./routes/proyectos.routes')
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,8 @@ app.use('/api/auth', authRoutes);
 
 // Rutas privadas:
 app.use('/api/usuarios', userRoutes);
-app.use('/api/cliente', clientRoutes)
+app.use('/api/cliente', clientRoutes);
+app.use('/api/proys', proyectoRoutes);
 
 // Sincronizar base de datos
 db.sequelize.sync()

@@ -1,29 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ModalProyecto.css";
 
-const ModalProyecto = ({ onClose, onSave, proyecto = {} }) => {
-  const [form, setForm] = React.useState({
-    nombre: proyecto.nombre || "",
-    descripcion: proyecto.descripcion || "",
-    estado: proyecto.estado || "pendiente",
-    fecha_inicio: proyecto.fecha_inicio || "",
-    fecha_entrega: proyecto.fecha_entrega || "",
+const ModalProyecto = ({ onClose, onSave, proyecto }) => {
+  const [form, setForm] = useState({
+    nombre: "",
+    descripcion: "",
+    estado: "pendiente",
+    fecha_inicio: "",
+    fecha_entrega: "",
   });
+
+  useEffect(() => {
+    if (proyecto) {
+      setForm({
+        nombre: proyecto.nombre || "",
+        descripcion: proyecto.descripcion || "",
+        estado: proyecto.estado || "pendiente",
+        fecha_inicio: proyecto.fecha_inicio || "",
+        fecha_entrega: proyecto.fecha_entrega || "",
+      });
+    } else {
+      setForm({
+        nombre: "",
+        descripcion: "",
+        estado: "pendiente",
+        fecha_inicio: "",
+        fecha_entrega: "",
+      });
+    }
+  }, [proyecto]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    onSave(form);
+    const dataToSend = proyecto?.id ? { ...form, id: proyecto.id } : form;
+    onSave(dataToSend);
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-container">
         <h3 className="modal-title">
-          {proyecto.id ? "Editar Proyecto" : "Nuevo Proyecto"}
+          {proyecto?.id ? "Editar Proyecto" : "Nuevo Proyecto"}
         </h3>
+
         <input
           name="nombre"
           className="modal-input"
