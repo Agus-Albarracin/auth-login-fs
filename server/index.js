@@ -20,6 +20,7 @@ app.use('/api/cliente', clientRoutes)
 // Sincronizar base de datos
 db.sequelize.sync()
 .then( console.log("Se ha iniciado la base de datos correctamente"))
+.catch(error => console.error(`Hubo un error al intentar iniciar la base de datos ${error}`))
 
 const PORT = process.env.PORT_SERVER;
 app.listen(PORT , () =>{ 
